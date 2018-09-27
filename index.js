@@ -20,16 +20,23 @@ function parseGuid(guid) {
   };
 }
 
-app.post('/*', upload.single('thumb'), async function(req, res, next) {
-  const data = JSON.parse(req.body.payload);
+app.post('/*', upload.single('thumb'), async function(req, res) {
+  // TODO: TrY CATCH JSON
+  let data = null;
+  try {
+    data = JSON.parse(req.body.payload);
+  } catch (e) {
+    res.sendStatus(400);
+    return;
+  }
 
   if (data.event !== 'media.scrobble') {
     res.send({ skipped: true, reason: 'Wrong event, expects media.scrobble' });
-    return next();
+    return;
   }
   if (!PLEX_USER.split(',').includes(data.Account.title)) {
     res.send({ skipped: true, reason: `Wrong user, expects ${PLEX_USER}` });
-    return next();
+    return;
   }
 
   const showInfo = parseGuid(data.Metadata.guid);
@@ -67,7 +74,6 @@ app.post('/*', upload.single('thumb'), async function(req, res, next) {
   }
 
   res.send({ ok: tvtimeSuccess, reason: errorMsg });
-  return next();
 });
 
 app.listen(PORT, () => {

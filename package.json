@@ -1,0 +1,22 @@
+{
+  "name": "plex-tvtime-webhook",
+  "version": "0.0.0",
+  "main": "index.js",
+  "author": "Kees Kluskens <kees@webduck.nl>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "form-data": "^2.3.2",
+    "got": "^9.2.2",
+    "restify": "^7.2.1"
+  },
+  "devDependencies": {
+    "@volst/eslint-config": "^2.1.0",
+    "eslint": "^5.6.0",
+    "nodemon": "^1.18.4"
+  },
+  "scripts": {
+    "start": "nodemon src/index.js"
+  }
+}

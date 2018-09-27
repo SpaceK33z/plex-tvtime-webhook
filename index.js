@@ -27,7 +27,7 @@ server.post('/plex', async (req, res, next) => {
     res.send({ skipped: true, reason: 'Wrong event, expects media.scrobble' });
     return next();
   }
-  if (data.Account.title !== PLEX_USER) {
+  if (!PLEX_USER.split(',').includes(data.Account.title)) {
     res.send({ skipped: true, reason: `Wrong user, expects ${PLEX_USER}` });
     return next();
   }

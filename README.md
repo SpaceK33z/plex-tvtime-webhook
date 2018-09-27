@@ -24,6 +24,6 @@ Make sure you know Plex can access the IP and port where the webserver runs.
 
 This step is for the simple and avanced routes. Add a webhook in Plex, you can learn [how to do it here](https://support.plex.tv/articles/115002267687-webhooks/).
 
-The webhook URL you should be using is `http://[your-ip]:[your-port]/plex`. The `/plex` part is very important!
+The webhook URL you should be using is `http://[your-ip]:[your-port]`.
 
 **Now you are done!** To test, you can start playing a TV show from Plex, scroll to the end, wait a few seconds and in TVTime the episode should be marked as watched!

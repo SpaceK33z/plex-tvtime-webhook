@@ -20,7 +20,7 @@ function parseGuid(guid) {
   };
 }
 
-server.post('/plex', async (req, res, next) => {
+server.post('/*', async (req, res, next) => {
   const data = req.body;
 
   if (data.event !== 'media.scrobble') {
@@ -33,8 +33,6 @@ server.post('/plex', async (req, res, next) => {
   }
 
   const showInfo = parseGuid(data.Metadata.guid);
-
-  console.log('showInfo', showInfo);
 
   const form = new FormData();
   form.append('access_token', TVTIME_ACCESS_TOKEN);
@@ -58,7 +56,9 @@ server.post('/plex', async (req, res, next) => {
     errorMsg = e.message;
   }
   const showTitle = data.Metadata.grandparentTitle;
-  const logPrefix = `${showTitle} S${showInfo.season}E${showInfo.episode}`;
+  const logPrefix = `${showTitle} S${showInfo.season}E${
+    showInfo.episode
+  } (tvdb: ${showInfo.tvdb})`;
 
   if (tvtimeSuccess) {
     console.log(`${logPrefix} successfully marked as watched`);

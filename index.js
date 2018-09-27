@@ -1,11 +1,11 @@
-const restify = require('restify');
+const express = require('express');
+const multer = require('multer');
 const { TVTIME_ACCESS_TOKEN, PLEX_USER, PORT } = require('./settings');
 const got = require('got');
 const FormData = require('form-data');
 
-const server = restify.createServer();
-
-server.use(restify.plugins.bodyParser());
+const app = express();
+const upload = multer({ dest: '/tmp/' });
 
 function parseGuid(guid) {
   // Example input: com.plexapp.agents.thetvdb://76156/1/18?lang=en
@@ -20,8 +20,8 @@ function parseGuid(guid) {
   };
 }
 
-server.post('/*', async (req, res, next) => {
-  const data = req.body;
+app.post('/*', upload.single('thumb'), async function(req, res, next) {
+  const data = JSON.parse(req.body.payload);
 
   if (data.event !== 'media.scrobble') {
     res.send({ skipped: true, reason: 'Wrong event, expects media.scrobble' });
@@ -70,6 +70,6 @@ server.post('/*', async (req, res, next) => {
   return next();
 });
 
-server.listen(PORT, function() {
-  console.log('%s listening at %s', server.name, server.url);
+app.listen(PORT, () => {
+  console.log(`Plex TVTime webhook listening on ${PORT}`);
 });

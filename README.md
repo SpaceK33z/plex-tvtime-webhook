@@ -2,9 +2,11 @@
 
 [TVTime](https://www.tvtime.com/) is an awesome app to monitor the TV shows you're watching. Unfortunately I have to keep it in sync manually after I've watched a TV show on [Plex](https://www.plex.tv/), which feels kinda cumbersome.
 
-TVTime [has a scrobbler](https://github.com/tvshowtime/tvshowtime-plex-scrobbler/) that seems to do this, but it hasn't gotten any updates, is very difficult to install and requires you to set Plex logging to `DEBUG` level, which causes a lot of data.
+TVTime [has a scrobbler](https://github.com/tvshowtime/tvshowtime-plex-scrobbler/) that seems to do this, but it hasn't gotten any updates, is very difficult to install and requires you to set Plex logging to `DEBUG` level, which causes a lot of data. Also plugins are deprecated.
 
 My solution works on a relatively new feature from Plex, using webhooks.
+
+**Note:** if you manually mark an episode or season as watched from within Plex, it won't be synced. This is a limitation from using the webhooks.
 
 ## Installation
 

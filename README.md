@@ -18,7 +18,7 @@ Copy `.env.example` to `.env` and fill out the `PORT` and `PLEX_USER`. You don't
 
 Run `./register.js` in this repository. Do what the command tells you.
 
-Run the webserver with `node index.js` and make sure to keep it running via e.g. systemd (TODO: add systemd example).
+Run the webserver with `node index.js` and make sure you have some way to keep it running. For Linux users with `systemd` you can look at [plex-tvtime-webhook.service](./plex-tvtime-webhook.service)
 
 Make sure you know Plex can access the IP and port where the webserver runs.
 

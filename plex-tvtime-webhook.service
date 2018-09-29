@@ -1,0 +1,12 @@
+[Unit]
+Description=Plex TVTime Webhook
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/node /opt/plex-tvtime-webhook/index.js
+User=youruser
+WorkingDirectory=/opt/plex-tvtime-webhook
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

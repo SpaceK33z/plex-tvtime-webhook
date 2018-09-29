@@ -1,14 +1,17 @@
-{
+#!/bin/bash
+curl --request POST \
+  --url 'https://[your-plex-url]' \
+  --form 'payload={
     "event": "media.scrobble",
     "user": true,
     "owner": true,
     "Account": {
         "id": 1,
         "thumb": "https://plex.tv/users/xxx/avatar?c=xxx",
-        "title": "spacek33z"
+        "title": "[your-plex-account]"
     },
     "Server": {
-        "title": "Kees Fake Server",
+        "title": "TVTime Fake Server",
         "uuid": "xxx"
     },
     "Player": {
@@ -35,7 +38,7 @@
         "parentTitle": "Season 1",
         "contentRating": "TV-PG",
         "summary": "",
-        "index": 18,
+        "index": 1,
         "parentIndex": 1,
         "viewCount": 1,
         "lastViewedAt": 1537996938,
@@ -47,4 +50,4 @@
         "addedAt": 1535581221,
         "updatedAt": 1535581275
     }
-}
+}'
